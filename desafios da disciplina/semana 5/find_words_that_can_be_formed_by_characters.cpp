@@ -1,6 +1,7 @@
 class Solution {
 public:
     int countCharacters(vector<string>& words, string chars) {
+        map <string, int> freq;
         map <string, bool> wMap;
         map <char, int> cMap;
         
@@ -8,6 +9,11 @@ public:
         
         for (auto c: chars){
             cMap[c]++;
+        }
+        
+        
+        for (auto w : words){
+            freq[w]++;
         }
         
         for (auto w: words){
@@ -24,10 +30,11 @@ public:
         
         
         
-        for (auto & [w, f] : wMap){
-            if(f == true){
-                tamanho += w.size();
-                cout << w << ", " << f << ", " << w.size() << endl;
+        for (auto & [w, b] : wMap){
+            int f = 0;
+            if(b == true){
+                f = freq[w];                
+                tamanho += f * w.size();
 
             }
         }
